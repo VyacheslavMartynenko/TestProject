@@ -3,12 +3,15 @@ package player.position;
 import move.type.Move;
 import observer.Observer;
 import observer.Subject;
+import style.type.Style;
 
 public class Player implements Observer {
     private Move move;
+    private Style style;
 
-    Player(Move move, Subject subject) {
+    Player(Move move, Style style, Subject subject) {
         this.move = move;
+        this.style = style;
         subject.addObserver(this);
     }
 
@@ -21,7 +24,15 @@ public class Player implements Observer {
     }
 
     public String moveBall() {
-        return move.moveBall();
+        return style.chooseStyle() + " " + move.moveBall();
+    }
+
+    public Style getStyle() {
+        return style;
+    }
+
+    public void setStyle(Style style) {
+        this.style = style;
     }
 
     @Override

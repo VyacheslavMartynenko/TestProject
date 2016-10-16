@@ -1,6 +1,8 @@
 package main;
 
-import move.*;
+import creation.AbstractFactory;
+import creation.FactoryCreator;
+import creation.FactoryType;
 import move.type.Move;
 import player.*;
 import player.position.Defender;
@@ -8,6 +10,7 @@ import player.position.Midfielder;
 import player.position.Player;
 import player.position.Striker;
 import stadium.Stadium;
+import style.type.Style;
 
 public class Main {
 
@@ -15,21 +18,23 @@ public class Main {
         Stadium stadium = new Stadium();
 
         PlayerFactory playerFactory = new PlayerFactory();
-        MoveFactory moveFactory = new MoveFactory();
+        AbstractFactory normalFactory = new FactoryCreator().getFactory(FactoryType.NORMAL);
+        AbstractFactory aggressiveFactory = new FactoryCreator().getFactory(FactoryType.AGGRESSIVE);
 
-        Move tackle = moveFactory.getMove(MoveType.TACKLE);
-        Move pass = moveFactory.getMove(MoveType.PASS);
-        Move shoot = moveFactory.getMove(MoveType.SHOOT);
+        Move normalMove = normalFactory.getMove();
+        Move aggressiveMove = aggressiveFactory.getMove();
+        Style normalStyle = normalFactory.getStyle();
+        Style aggressiveStyle = aggressiveFactory.getStyle();
 
-        Player defender = playerFactory.getPlayer(PlayerPosition.DEFENDER, tackle, stadium);
-        Player midfielder =  playerFactory.getPlayer(PlayerPosition.MIDFIELDER, pass, stadium);
-        Player striker = playerFactory.getPlayer(PlayerPosition.STRIKER, shoot, stadium);
+        Player defender = playerFactory.getPlayer(PlayerPosition.DEFENDER, normalMove, normalStyle, stadium);
+        Player midfielder =  playerFactory.getPlayer(PlayerPosition.MIDFIELDER, normalMove, normalStyle, stadium);
+        Player striker = playerFactory.getPlayer(PlayerPosition.STRIKER, aggressiveMove, aggressiveStyle, stadium);
 
         System.out.println(Defender.class.getSimpleName() + " " + defender.moveBall());
         System.out.println(Midfielder.class.getSimpleName() + " " + midfielder.moveBall());
         System.out.println(Striker.class.getSimpleName() + " " + striker.moveBall());
 
-        midfielder.setMove(shoot);
+        midfielder.setMove(aggressiveMove);
         System.out.println(Midfielder.class.getSimpleName() + " " + midfielder.moveBall());
 
         System.out.println("\nGOAL!!!");
