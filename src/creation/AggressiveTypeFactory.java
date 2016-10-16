@@ -7,7 +7,7 @@ import style.StyleFactory;
 import style.StyleType;
 import style.type.Style;
 
-public class AgressiveTypeFactory implements AbstractFactory {
+class AggressiveTypeFactory implements AbstractFactory {
     @Override
     public Move getMove() {
         return new MoveFactory().getMove(MoveType.SHOOT);

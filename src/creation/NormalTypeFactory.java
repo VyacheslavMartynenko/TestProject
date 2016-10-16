@@ -7,7 +7,7 @@ import style.StyleFactory;
 import style.StyleType;
 import style.type.Style;
 
-public class NormalTypeFactory implements AbstractFactory {
+class NormalTypeFactory implements AbstractFactory {
     @Override
     public Move getMove() {
         return new MoveFactory().getMove(MoveType.PASS);

@@ -6,7 +6,7 @@ public class FactoryCreator {
             case NORMAL:
                 return new NormalTypeFactory();
             case AGGRESSIVE:
-                return new AgressiveTypeFactory();
+                return new AggressiveTypeFactory();
             default:
                 return null;
         }
