@@ -1,6 +1,6 @@
-package player;
+package player.position;
 
-import move.Move;
+import move.type.Move;
 import observer.Subject;
 
 public class Striker extends Player {

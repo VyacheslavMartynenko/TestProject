@@ -1,7 +1,12 @@
 package main;
 
 import move.*;
+import move.type.Move;
 import player.*;
+import player.position.Defender;
+import player.position.Midfielder;
+import player.position.Player;
+import player.position.Striker;
 import stadium.Stadium;
 
 public class Main {

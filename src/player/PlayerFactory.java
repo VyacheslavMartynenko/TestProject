@@ -1,7 +1,11 @@
 package player;
 
-import move.Move;
+import move.type.Move;
 import observer.Subject;
+import player.position.Defender;
+import player.position.Midfielder;
+import player.position.Player;
+import player.position.Striker;
 
 public class PlayerFactory {
     public Player getPlayer(PlayerPosition playerPosition, Move move, Subject subject) {

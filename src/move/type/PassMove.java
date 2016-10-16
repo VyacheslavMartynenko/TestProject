@@ -1,4 +1,4 @@
-package move;
+package move.type;
 
 public class PassMove implements Move {
     @Override

@@ -1,4 +1,4 @@
-package move;
+package move.type;
 
 public class ShootMove implements Move {
     @Override
