@@ -12,10 +12,12 @@ import player.position.Striker;
 import stadium.Stadium;
 import style.type.Style;
 
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
-        Stadium stadium = new Stadium();
+        Stadium stadium = new Stadium.StadiumBuilder("Old Trafford", 82000).observers(new ArrayList<>()).build();
 
         PlayerFactory playerFactory = new PlayerFactory();
         AbstractFactory normalFactory = new FactoryCreator().getFactory(FactoryType.NORMAL);
@@ -29,6 +31,8 @@ public class Main {
         Player defender = playerFactory.getPlayer(PlayerPosition.DEFENDER, normalMove, normalStyle, stadium);
         Player midfielder =  playerFactory.getPlayer(PlayerPosition.MIDFIELDER, normalMove, normalStyle, stadium);
         Player striker = playerFactory.getPlayer(PlayerPosition.STRIKER, aggressiveMove, aggressiveStyle, stadium);
+
+        System.out.println("Stadium: " +  stadium.getName() + ", capacity: " + stadium.getCapacity() + ".\n");
 
         System.out.println(Defender.class.getSimpleName() + " " + defender.moveBall());
         System.out.println(Midfielder.class.getSimpleName() + " " + midfielder.moveBall());

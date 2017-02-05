@@ -3,14 +3,45 @@ package stadium;
 import observer.Observer;
 import observer.Subject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Stadium implements Subject {
-    List<Observer> observers;
+    final private String name;
+    final private int capacity;
+    final private List<Observer> observers;
 
-    public Stadium() {
-        this.observers = new ArrayList<>();
+    private Stadium(StadiumBuilder builder) {
+        this.name = builder.name;
+        this.capacity = builder.capacity;
+        this.observers = builder.observers;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public static class StadiumBuilder {
+        final private String name;
+        final private int capacity;
+        private List<Observer> observers;
+
+        public StadiumBuilder(String name, int capacity) {
+            this.name = name;
+            this.capacity = capacity;
+        }
+
+        public StadiumBuilder observers(List<Observer> observers) {
+            this.observers = observers;
+            return this;
+        }
+
+        public Stadium build() {
+            return new Stadium(this);
+        }
     }
 
     @Override
@@ -30,7 +61,7 @@ public class Stadium implements Subject {
 
     @Override
     public void notifyObservers() {
-        for (Observer observer: observers) {
+        for (Observer observer : observers) {
             observer.update();
         }
     }
