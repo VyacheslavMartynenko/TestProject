@@ -5,7 +5,7 @@ import observer.Observer;
 import observer.Subject;
 import style.type.Style;
 
-public class Player implements Observer {
+public class Player implements Observer, Cloneable {
     private Move move;
     private Style style;
 
@@ -38,5 +38,18 @@ public class Player implements Observer {
     @Override
     public void update() {
         System.out.println("Player greeted by stadium.");
+    }
+
+    @Override
+    public Player clone() {
+        Player player = null;
+
+        try {
+            player = (Player) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return player;
     }
 }

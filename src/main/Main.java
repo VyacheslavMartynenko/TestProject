@@ -46,5 +46,10 @@ public class Main {
 
         System.out.println("\nWin!!!");
         stadium.notifyObservers();
+
+        Striker benchStriker = (Striker) striker.clone();
+        Midfielder benchMidfielder = (Midfielder) midfielder.clone();
+        System.out.println("\nBench styles: " + benchMidfielder.getStyle().chooseStyle()
+                + ", " + benchStriker.getStyle().chooseStyle() + ".");
     }
 }
