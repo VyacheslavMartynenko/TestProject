@@ -9,6 +9,10 @@ import player.position.Defender;
 import player.position.Midfielder;
 import player.position.Player;
 import player.position.Striker;
+import scoreboard.Scoreboard;
+import scoreboard.ScoreboardButton;
+import scoreboard.ScoreboardOff;
+import scoreboard.ScoreboardOn;
 import stadium.Stadium;
 import stadium.StadiumWithRoof;
 import style.type.Style;
@@ -36,6 +40,11 @@ public class Main {
 
         System.out.println("Stadium: " +  mainStadium.getName() + ", capacity: " + mainStadium.getCapacity() + ".\n");
 
+        Scoreboard scoreboard = new Scoreboard();
+        ScoreboardOn scoreboardOn = new ScoreboardOn(scoreboard);
+        ScoreboardButton scoreboardButton = new ScoreboardButton(scoreboardOn);
+        scoreboardButton.press();
+
         System.out.println(Defender.class.getSimpleName() + " " + defender.moveBall());
         System.out.println(Midfielder.class.getSimpleName() + " " + midfielder.moveBall());
         System.out.println(Striker.class.getSimpleName() + " " + striker.moveBall());
@@ -48,6 +57,10 @@ public class Main {
 
         System.out.println("\nWin!!!");
         stadiumWithRoof.notifyObservers();
+
+        ScoreboardOff scoreboardOff = new ScoreboardOff(scoreboard);
+        scoreboardButton = new ScoreboardButton(scoreboardOff);
+        scoreboardButton.press();
 
         Striker benchStriker = (Striker) striker.clone();
         Midfielder benchMidfielder = (Midfielder) midfielder.clone();
