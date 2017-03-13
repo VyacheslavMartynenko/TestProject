@@ -1,11 +1,12 @@
 package player.position;
 
+import move.Speak;
 import move.type.Move;
 import observer.Observer;
 import observer.Subject;
 import style.type.Style;
 
-public class Player implements Observer, Cloneable {
+public class Player implements Observer, Cloneable, Speak {
     private Move move;
     private Style style;
 
@@ -51,5 +52,15 @@ public class Player implements Observer, Cloneable {
         }
 
         return player;
+    }
+
+    @Override
+    public void sayShoot() {
+        System.out.println("Player say \"shoot\".");
+    }
+
+    @Override
+    public void sayPass() {
+        System.out.println("Player say \"pass\".");
     }
 }

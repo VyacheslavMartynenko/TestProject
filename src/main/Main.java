@@ -1,5 +1,7 @@
 package main;
 
+import coach.Coach;
+import coach.CoachAdapter;
 import creation.AbstractFactory;
 import creation.FactoryCreator;
 import creation.FactoryType;
@@ -45,8 +47,13 @@ public class Main {
         ScoreboardButton scoreboardButton = new ScoreboardButton(scoreboardOn);
         scoreboardButton.press();
 
+        Coach coach = new Coach();
+        CoachAdapter coachAdapter = new CoachAdapter(coach);
+
         System.out.println(Defender.class.getSimpleName() + " " + defender.moveBall());
+        striker.sayPass();
         System.out.println(Midfielder.class.getSimpleName() + " " + midfielder.moveBall());
+        coachAdapter.sayShoot();
         System.out.println(Striker.class.getSimpleName() + " " + striker.moveBall());
 
         midfielder.setMove(aggressiveMove);
