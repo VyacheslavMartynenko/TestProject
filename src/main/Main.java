@@ -2,6 +2,7 @@ package main;
 
 import coach.Coach;
 import coach.CoachAdapter;
+import cook.Cooker;
 import creation.AbstractFactory;
 import creation.FactoryCreator;
 import creation.FactoryType;
@@ -41,6 +42,12 @@ public class Main {
         Player striker = playerFactory.getPlayer(PlayerPosition.STRIKER, aggressiveMove, aggressiveStyle, stadiumWithRoof);
 
         System.out.println("Stadium: " +  mainStadium.getName() + ", capacity: " + mainStadium.getCapacity() + ".\n");
+
+        Cooker cooker = new Cooker();
+        cooker.makeDrinks();
+        cooker.makeSnacks();
+        cooker.makePizza();
+        System.out.println();
 
         Scoreboard scoreboard = new Scoreboard();
         ScoreboardOn scoreboardOn = new ScoreboardOn(scoreboard);
