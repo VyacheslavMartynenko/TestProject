@@ -1,5 +1,8 @@
 package main;
 
+import advert.AdvertMaker;
+import advert.StadiumAdvert;
+import advert.VideoInfo;
 import coach.Coach;
 import coach.CoachAdapter;
 import cook.Cooker;
@@ -53,6 +56,9 @@ public class Main {
         ScoreboardOn scoreboardOn = new ScoreboardOn(scoreboard);
         ScoreboardButton scoreboardButton = new ScoreboardButton(scoreboardOn);
         scoreboardButton.press();
+
+        StadiumAdvert stadiumAdvert = new StadiumAdvert(new VideoInfo());
+        stadiumAdvert.giveAdvert();
 
         Coach coach = new Coach();
         CoachAdapter coachAdapter = new CoachAdapter(coach);
