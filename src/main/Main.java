@@ -1,6 +1,5 @@
 package main;
 
-import advert.AdvertMaker;
 import advert.StadiumAdvert;
 import advert.VideoInfo;
 import coach.Coach;
@@ -22,12 +21,16 @@ import scoreboard.ScoreboardOn;
 import stadium.Stadium;
 import stadium.StadiumWithRoof;
 import style.type.Style;
+import template.Football;
+import template.Game;
 
 import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
+        Game game = new Football();
+        game.start();
         Stadium mainStadium = new Stadium.StadiumBuilder("Old Trafford", 82000).observers(new ArrayList<>()).build();
         StadiumWithRoof stadiumWithRoof = new StadiumWithRoof(mainStadium);
 
@@ -41,10 +44,10 @@ public class Main {
         Style aggressiveStyle = aggressiveFactory.getStyle();
 
         Player defender = playerFactory.getPlayer(PlayerPosition.DEFENDER, normalMove, normalStyle, stadiumWithRoof);
-        Player midfielder =  playerFactory.getPlayer(PlayerPosition.MIDFIELDER, normalMove, normalStyle, stadiumWithRoof);
+        Player midfielder = playerFactory.getPlayer(PlayerPosition.MIDFIELDER, normalMove, normalStyle, stadiumWithRoof);
         Player striker = playerFactory.getPlayer(PlayerPosition.STRIKER, aggressiveMove, aggressiveStyle, stadiumWithRoof);
 
-        System.out.println("Stadium: " +  mainStadium.getName() + ", capacity: " + mainStadium.getCapacity() + ".\n");
+        System.out.println("Stadium: " + mainStadium.getName() + ", capacity: " + mainStadium.getCapacity() + ".\n");
 
         Cooker cooker = new Cooker();
         cooker.makeDrinks();
@@ -69,6 +72,10 @@ public class Main {
         coachAdapter.sayShoot();
         System.out.println(Striker.class.getSimpleName() + " " + striker.moveBall());
 
+        System.out.println();
+        game.rest();
+        System.out.println();
+        
         midfielder.setMove(aggressiveMove);
         System.out.println(Midfielder.class.getSimpleName() + " " + midfielder.moveBall());
 
@@ -86,5 +93,7 @@ public class Main {
         Midfielder benchMidfielder = (Midfielder) midfielder.clone();
         System.out.println("\nBench styles: " + benchMidfielder.getStyle().chooseStyle()
                 + ", " + benchStriker.getStyle().chooseStyle() + ".");
+
+        game.end();
     }
 }
